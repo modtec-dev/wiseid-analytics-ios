@@ -1,0 +1,774 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-3.4.1.slim.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.touchSwipe.min.js"></script>
+
+    <title>VIVO</title>
+    <style type="text/css">
+        body{
+    		overflow-x: hidden;
+    	}
+
+		h3{
+			font-family: roboto slab;
+			color: #888888;
+			margin: 0 0 24px 0;
+		}
+
+		table{
+			background: #fff;
+			display: block;
+			border-collapse: collapse;
+			width: 100%;
+		}
+		.bold{
+			font-weight: 700;
+		}
+		.device-name{
+			font-family: roboto slab;
+			float: right;
+			color: #fff;
+			text-transform: uppercase;
+			font-size: 20px;
+			max-width: calc(100% - 134px);
+			text-align: right;
+			margin: auto 16px auto auto;
+			display: block;
+			font-weight: 700;
+		}
+		.banner{
+			width: calc(100% - 32px);
+			position: fixed;
+			bottom: 8px;
+			margin: 0 auto;
+		}
+		ul{
+			padding: 0;
+			margin: 0;
+		}
+
+		ul li{
+			text-decoration: none;
+			display: block;
+			margin: 12px 0;
+		}
+
+		.banner img{
+			max-width: 100%;
+			border-radius: 8px;
+		}
+		td, th {
+			border: 1px solid #f1f2f3;
+			text-align: left;
+			padding: 12px 8px;
+			font-family: roboto slab;
+			font-size: 14px;
+			width: 100%;
+			white-space: nowrap;
+		}
+
+		.legal-text{
+			font-size: 10px;
+			font-family: roboto;
+			color: #888888;
+		}
+
+		.legal-text-gadgets{
+			font-size: 10px;
+			font-family: roboto;
+			color: #888888;
+		}
+
+		.price{
+			color: #F19D43;
+			font-weight: 700;
+			text-align: right;
+		}
+
+		.price-gadgets{
+			color: #F19D43;
+			font-weight: 700;
+			text-align: right;
+		}
+
+		.h3_gadgets{
+			font-family: roboto slab;
+			color: #888888;
+			margin: 0 0 24px 0;
+		}
+
+		.space{
+			margin-top: 80px;
+		}
+
+		.tab {
+			overflow: hidden;
+			background-color: #fff;
+			position: fixed;
+			display: flex;
+			justify-content: center;
+			padding: 24px 0;
+			width: calc(100% - 32px);
+			z-index: 2;
+		}
+
+		/* Style the buttons that are used to open the tab content */
+		.tab button {
+			background-color: inherit;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 8px;
+			transition: 0.3s;
+			width: 100%;
+			font-family: roboto slab;
+			font-weight: 700;
+			border: solid 1px #f1f2f3;
+			border-radius: 40px;
+			margin: 0 4px;
+			text-align: center;
+			font-size: 0.9em;
+		}
+
+		/* Create an active/current tablink class */
+		.tab button.active {
+			background-color: #A078B4;
+			border-radius: 40px;
+			color: #fff;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+			display: none;
+			padding: 24px 12px;
+			border-top: none;
+			position: relative;
+			background: #f1f2f3;
+			margin-top: 84px;
+			border-radius: 8px;
+			width: calc(100% - 24px);
+			color: #888888;
+		}
+
+		#slider {
+			/*height: 350px;
+			overflow: hidden;
+			width: 100%;*/
+		}
+
+		.carousel-item {
+			height: 350px;
+		}
+		.carousel-indicators{
+			width: 100%;
+		    text-align: center;
+		    list-style: none;
+		    display: block;
+		    position: relative;
+		    padding: 0;
+		    left: 0;
+		    bottom: 0;
+		    margin: 16px auto;
+		}
+
+		.carousel-indicators li {
+			width: 10px;
+			height: 10px;
+			border-radius: 100%;
+		}
+
+		.carousel-indicators li {
+		  background-color: #999;
+		  background-color: rgba(70, 70, 70, 0.25);
+		}
+
+		.carousel-indicators .active {
+		  background-color: #47006a;
+		}
+
+		.carousel-item-gadgets {
+			height: 350px;
+		}
+		.carousel-indicators-gadgets{
+			width: 100%;
+		    text-align: center;
+		    list-style: none;
+		    display: block;
+		    position: relative;
+		    padding: 0;
+		    left: 0;
+		    bottom: 0;
+		    margin: 16px auto;
+		}
+
+		.carousel-indicators-gadgets li {
+			width: 10px;
+			height: 10px;
+			border-radius: 100%;
+		}
+
+		.carousel-indicators-gadgets li {
+		  background-color: #999;
+		  background-color: rgba(70, 70, 70, 0.25);
+		}
+
+		.carousel-indicators-gadgets .active {
+		  background-color: #47006a;
+		}
+
+	</style>
+</head>
+<body style="margin: 0;padding: 0;" onload=" loadTag(); showPlans();">
+<header style="width: 100%;min-height: 88px;background:#7850A0;position:fixed;z-index: 3;display: flex;">
+    <svg style="fill: #ffffff; height: 32px;width: 70px;display: inline-block;margin: auto auto auto 16px;">
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1476 551"><g id="logo_vivo" data-name="Vivo"><path d="M538.64,0h7.83a73.56,73.56,0,0,1,53.15,27.46A73,73,0,1,1,498,15.09,73.9,73.9,0,0,1,538.64,0Z"/><path d="M65.59,180.54c17.06-7.15,38.09-1,49.26,13.54,3.62,4.39,5.75,9.72,8.3,14.75Q168.8,300.39,214.3,392l1.36,0q46.47-93.21,92.87-186.47c2.16-4.66,4.57-9.27,8-13.11,11.4-13.42,31.5-18.76,47.87-11.94,14.6,6.38,29.07,13,43.65,19.45,13.31,6.53,22.4,21.11,22,36,0,7.92-2.75,15.6-6.72,22.37Q349,390,274.69,521.69A50.7,50.7,0,0,1,233,547.24c-10.67,0-21.34,0-32,0a50.57,50.57,0,0,1-41.72-19.77c-3.11-4-5.36-8.58-7.89-13Q78.69,385.77,6,257a48.07,48.07,0,0,1-6-18.87v-6.32c1.52-13.6,10.15-26.42,22.69-32.15C37,193.37,51.25,186.82,65.59,180.54Z"/><path d="M717.21,182.1c15.58-8.13,35.88-5,48.45,7.22a45.93,45.93,0,0,1,10.74,15.52q30.71,61.72,61.42,123.46c10.71,21.32,21.09,42.82,32,64l1.43-1.09q47.82-95.72,95.41-191.54c9.7-17.94,33.1-27.08,52.21-19.48,14.79,6.38,29.39,13.19,44.15,19.64A40.05,40.05,0,0,1,1085.3,234a44.74,44.74,0,0,1-6.49,23.89q-73,129.42-146.08,258.81c-1.81,3.15-3.5,6.38-5.6,9.35a50.45,50.45,0,0,1-42.08,21.23c-11,0-22,0-33,0a50.61,50.61,0,0,1-39.6-22.62c-2.79-4.37-5.17-9-7.76-13.46q-70.51-124.9-141-249.82c-3.87-6.54-7.32-13.54-8.16-21.19-2.4-17.19,8.31-35.07,24.42-41.35C692.36,193.26,704.77,187.65,717.21,182.1Z"/><path d="M1237.12,186.39A186.28,186.28,0,0,1,1476,358.69v11.92a186.32,186.32,0,0,1-117.91,167.53A189.34,189.34,0,0,1,1296.44,551h-12.06a186.18,186.18,0,0,1-47.26-364.61m39.4,106.34c-26.65,4.64-49.59,25.32-57,51.31a73.42,73.42,0,1,0,57-51.31Z"/><path d="M514.54,183.67a47.54,47.54,0,0,1,10.45-1c12.65,0,25.31,0,38,0A45,45,0,0,1,606.7,228q0,132.55,0,265.11c-.06,7,.48,14.22-1.56,21.06a45.14,45.14,0,0,1-27,30.07A47.16,47.16,0,0,1,560,547.32c-12.68-.06-25.36.11-38-.09-18.34-.53-35.41-13.6-40.8-31.12-2.86-8.09-2-16.75-2.14-25.15V238c.08-7.75-.6-15.68,1.83-23.18A45.1,45.1,0,0,1,514.54,183.67Z"/></g></svg>
+    </svg>
+    <p class="device-name" id="device-name">nome_celular</p>
+</header>
+
+<div style="padding: 88px 16px;">
+    <div class="tab">
+        <button id="btnPlanos" class="tablinks" onclick="openTab(event, 'planos')">Planos</button>
+        <button id="btnInfos" class="tablinks" onclick="openTab(event, 'infos')">Características</button>
+        <button id="btnGadgets" class="tablinks" onclick="openTab(event, 'gadgets')">Acessorios</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="planos" class="tabcontent">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" id="carousel-inner"></div>
+            <!-- Indicators -->
+            <ol class="carousel-indicators" id="carousel-indicators"></ol>
+
+            <p class="legal-text" id="legal-info"></p>
+
+        </div>
+        <p class="legal-text" id="legal-info"></p>
+    </div>
+
+    <div id="infos" class="tabcontent">
+        <h3>Principais Características</h3>
+    </div>
+    <div class="space"></div>
+
+    <div id="gadgets" class="tabcontent">
+        <div id="myCarouselGadgets" class="carousel slide" data-ride="carousel" data-interval="false" >
+
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" id="carousel-inner-gadgets"></div>
+            <!-- Indicators -->
+            <ol class="carousel-indicators	" id="carousel-indicators-gadgets"></ol>
+
+            <p class="legal-text-gadgets" id="legal-info-gadgets"></p>
+
+        </div>
+        <p class="legal-text" id="legal-info"></p>
+    </div>
+
+    <div class="banner" >
+        <img id="banner" src="" alt="Banner VIVO">
+
+    </div>
+</div>
+
+<script>
+ var _obj;
+ var _obj1;
+ var _obj2;
+
+ function loadTag(){
+        window.webkit.messageHandlers.loadTag.postMessage('');
+ }
+ 
+ function carregarJsonEtiqueta(data){
+	_obj  = '';
+	_obj1 = '';
+	_obj2 = '';
+
+    var tagJson = JSON.parse(data["tag"]);
+    
+    if(tagJson != ''){
+        _obj1 = JSON.parse(data["tag"]);
+        _obj = _obj1.prices;
+        _obj2 = _obj1.gadgets;
+
+        document.getElementById("banner").src = "data:image/png;base64, " + _obj1.bannerUrl;
+    }else{
+		_obj =  JSON.parse('[{"legal_info":"","title":"Etiqueta não cadastrada","priceLines":[{"label":"","value":"","disclaimer":""}]}]');
+        _obj1 =  JSON.parse('{"header":{"title":"Etiqueta não encontrada", "infos":[""]}}');
+		_obj2 = '';
+    }
+
+	if(_obj2 == ''){
+		document.getElementById("btnGadgets").style.display = "none";
+		document.getElementById("gadgets").style.display = "none";
+	}
+
+    document.getElementById("device-name").textContent = _obj1.header.title; //NativeDevice.getDeviceName()
+    document.getElementById("legal-info").textContent =  _obj1.header.legal_info;
+
+    var _divPlanos = document.getElementById('planos');
+    var _divCarousel = document.getElementById('myCarousel');
+    var _ol = document.getElementById('carousel-indicators');
+    var _divInner = document.getElementById('carousel-inner');
+
+
+    for (var i = 0; i < _obj.length; i++) {
+
+		var _legalInfo = document.createElement('p');
+		_legalInfo.className = "legal-text";
+		_legalInfo.textContent =  _obj[i].legal_info;
+
+        var _h3 = document.createElement('h3');
+        var _tbl = document.createElement('table');
+
+        var _val = _obj[i].priceLines;
+        var _divItem = document.createElement('div');
+
+        _h3.textContent = _obj[i].title;
+        _divItem.appendChild(_h3);
+
+        var _li = document.createElement('li');
+
+        _li.setAttribute('data-slide-to', i);
+        _li.setAttribute('data-target', '#myCarousel');
+
+        if (i == 0){
+             _li.className = 'active';
+             _divItem.className = 'item active';
+        }
+        else{
+            _divItem.className = 'item'
+        }
+
+         _ol.appendChild(_li);
+
+        for (var j = 0; j < _val.length; j++) {
+
+            var _tr = document.createElement('tr');
+
+            var _td1 = document.createElement('td');
+
+
+            var _td2 = document.createElement('td');
+            _td2.className='price';
+
+            _td1.appendChild(document.createTextNode(_val[j].label));
+            _td2.appendChild(document.createTextNode(_val[j].value ));
+
+            _tr.appendChild(_td1);
+            _tr.appendChild(_td2);
+
+            _tbl.appendChild(_tr);
+
+        }
+
+        _divItem.appendChild(_tbl);
+		_divItem.appendChild(_legalInfo);
+        _divInner.appendChild(_divItem);
+
+	}
+
+	if(_obj2 != ''){
+
+		var _divGadgets = document.getElementById('gadgets');
+		var _divCarousel_gadgets = document.getElementById('myCarousel-gadgets');
+		var _ol_gadgets = document.getElementById('carousel-indicators-gadgets');
+		var _divInner_gadgets = document.getElementById('carousel-inner-gadgets');
+
+		for (var k = 0; k < _obj2.length; k++) {
+
+			var _legalInfo_gadgets = document.createElement('p');
+			_legalInfo_gadgets.className = "legal-text-gadgets";
+			_legalInfo_gadgets.textContent =  _obj2[k].legal_info;
+
+			var _h3_gadgets = document.createElement('h3');
+			_h3_gadgets.className = "h3_gadgets";
+			var _tbl_gadgets = document.createElement('table');
+
+			var _val_gadgets = _obj2[k].gadgetLines;
+			var _divItem_gadgets = document.createElement('div');
+
+			_h3_gadgets.textContent = _obj2[k].title;
+			_divItem_gadgets.appendChild(_h3_gadgets);
+
+			var _li_gadgets = document.createElement('li');
+
+			_li_gadgets.setAttribute('data-slide-to', k);
+			_li_gadgets.setAttribute('data-target', '#myCarouselGadgets');
+
+			if (k == 0){
+				 _li_gadgets.className = 'active';
+				 _divItem_gadgets.className = 'item active';
+			}
+			else{
+				_divItem_gadgets.className = 'item'
+			}
+
+			 _ol_gadgets.appendChild(_li_gadgets);
+
+
+			for (var i = 0; i < _obj2[k].infos.length; i++) {
+
+				var _tr_gadgets = document.createElement('tr');
+				var _td1_gadgets = document.createElement('td');
+
+				_td1_gadgets.appendChild(document.createTextNode(_obj2[k].infos[i]));
+				_td1_gadgets.setAttribute("colspan","2");
+				//_td1_gadgets.setAttribute("height","80");
+				_td1_gadgets.setAttribute("style","word-wrap: break-word");
+				_td1_gadgets.setAttribute("max-width","100");
+				_tr_gadgets.appendChild(_td1_gadgets);
+
+				_tbl_gadgets.appendChild(_tr_gadgets);
+			}
+
+			for (var l = 0; l < _val_gadgets.length; l++) {
+
+				var _tr_gadgets = document.createElement('tr');
+
+				var _td1_gadgets = document.createElement('td');
+
+				var _td2_gadgets = document.createElement('td');
+				_td2_gadgets.className='price-gadgets';
+
+				_td1_gadgets.appendChild(document.createTextNode(_val_gadgets[l].label));
+				_td2_gadgets.appendChild(document.createTextNode(_val_gadgets[l].value ));
+
+				_tr_gadgets.appendChild(_td1_gadgets);
+				_tr_gadgets.appendChild(_td2_gadgets);
+
+				_tbl_gadgets.appendChild(_tr_gadgets);
+
+			}
+
+			_divItem_gadgets.appendChild(_tbl_gadgets);
+			_divItem_gadgets.appendChild(_legalInfo_gadgets);
+			_divInner_gadgets.appendChild(_divItem_gadgets);
+
+		}
+	}
+
+
+	var _divInfo = document.getElementById("infos");
+	var _ul = document.createElement('ul');
+	var _infos = _obj1.header.infos;
+	for (x in _infos){
+
+		var _li = document.createElement('li');
+
+		_li.textContent = _infos[x];
+
+		_ul.appendChild(_li);
+	}
+
+	_divInfo.appendChild(_ul);
+}
+
+$(document).ready(function() {
+    $(".carousel-inner").swipe( {
+        //Generic swipe handler for all directions
+        swipeLeft:function(event, direction, distance, duration, fingerCount) {
+            $(this).parent().carousel('next');
+        },
+        swipeRight: function() {
+            $(this).parent().carousel('prev');
+        },
+        //Default is 75px, set to 0 for demo so any distance triggers swipe
+        threshold:0
+    });
+
+});
+
+$(document).ready(function() {
+    $("#carousel-inner-gadgets").swipe( {
+
+
+        //Generic swipe handler for all directions
+        swipeLeft:function(event, direction, distance, duration, fingerCount) {
+            $(this).parent().carousel('next');
+			var ele = $('#myCarouselGadgets .carousel-indicators li.active');
+			console.log("Bullet Index", ele.data('slideTo'));
+			document.getElementById("device-name").textContent = _obj2[ele.data('slideTo')].title;
+        },
+        swipeRight: function() {
+            $(this).parent().carousel('prev');
+			var ele = $('#myCarouselGadgets .carousel-indicators li.active');
+			console.log("Bullet Index", ele.data('slideTo'));
+			document.getElementById("device-name").textContent = _obj2[ele.data('slideTo')].title;
+        },
+        //Default is 75px, set to 0 for demo so any distance triggers swipe
+        threshold:0
+    });
+
+});
+
+
+</script>
+
+
+</body>
+
+<script type="text/javascript">
+function openTab(evt, plan) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  if(_obj1){
+	  if(plan != 'gadgets'){
+		document.getElementById("device-name").textContent = _obj1.header.title;
+	  }else{
+		var ele = $('#myCarouselGadgets .carousel-indicators li.active');
+		console.log("Bullet Index", ele.data('slideTo'));
+		document.getElementById("device-name").textContent = _obj2[0].title;
+	  }
+  }
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+  	tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+  	tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(plan).style.display = "block";
+  evt.currentTarget.className += " active";
+
+}
+
+function showPlans(){
+    openTab(event, 'planos');
+    document.getElementById('btnPlanos').className += " active";
+}
+
+function start() {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        if(tabcontent[i].id != "planos"){
+			document.getElementById("device-name").textContent = _obj1.header.title;
+            tabcontent[i].style.display = "none";
+            document.getElementById("planos").style.display = "block";
+        }
+    }
+
+   // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        if(tablinks[i].id != 'planos' && tablinks[i].classList.contains("active")){
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+            document.getElementById('btnPlanos').style.display = "block";
+            document.getElementById('btnPlanos').className += " active";
+        }
+    }
+}
+
+</script>
+
+<script type="text/javascript">
+    var SCHEDULE_TIMEOUT = 30000 ;
+    var body = document.body ;
+    var html = document.documentElement;
+    var screenHeight = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+    var screenWidth = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
+
+    var burnGuardLeft = document.createElement("div");
+    var burnGuardRight = document.createElement("div");
+    var burnGuardTop = document.createElement("div");
+    var burnGuardBottom = document.createElement("div");
+    var css = `
+        background-color: blue ;
+        width: 1px ;
+        height: ${screenHeight}px ;
+        position: absolute ;
+        z-index: 9999;
+        top: 0px ;
+        left: 0px ;
+    `;
+    burnGuardLeft.id = "burnGuardLeft" ;
+    burnGuardLeft.style.cssText = css ;
+
+    burnGuardRight.id = "burnGuardRight" ;
+    burnGuardRight.style.cssText = css ;
+
+    burnGuardTop.id = "burnGuardTop" ;
+    burnGuardTop.style.cssText = css ;
+
+    burnGuardBottom.id = "burnGuardBottom" ;
+    burnGuardBottom.style.cssText = css ;
+
+    document.body.appendChild(burnGuardLeft) ;
+    document.body.appendChild(burnGuardRight) ;
+
+    document.body.appendChild(burnGuardTop) ;
+    document.body.appendChild(burnGuardBottom) ;
+
+    var color = 0 ;
+    var colors = ['red','green','blue'] ;
+
+    var lastLeft = 0 ;
+    var lastRight = screenWidth ;
+    var lastTop = 0 ;
+    var lastBottom = screenHeight ;
+
+    burnGuardAnimateLeft = () => {
+        color = ++color % 3;
+        var rColor = colors[color];
+        lastLeft += 1 ;
+
+        var burnGuard = document.getElementById("burnGuardLeft") ;
+        burnGuard.style.left = `${lastLeft}px` ;
+        burnGuard.style.backgroundColor = rColor ;
+        if (lastLeft <= screenWidth/2) {
+          setTimeout(burnGuardAnimateLeft,5);
+        } else {
+            burnGuard.style.display = "none" ;
+        }
+    }
+
+    burnGuardAnimateRight = () => {
+        color = ++color % 3;
+        var rColor = colors[color];
+        lastRight -= 1 ;
+
+        var burnGuard = document.getElementById("burnGuardRight") ;
+        burnGuard.style.left = `${lastRight}px` ;
+        burnGuard.style.backgroundColor = rColor ;
+        if (lastRight >= screenWidth/2) {
+          setTimeout(burnGuardAnimateRight,5);
+        } else {
+            burnGuard.style.display = "none" ;
+        }
+    }
+
+    burnGuardAnimateTop = () => {
+        color = ++color % 3;
+        var rColor = colors[color];
+        lastTop += 1 ;
+
+        var burnGuard = document.getElementById("burnGuardTop") ;
+        burnGuard.style.top = `${lastTop}px` ;
+        burnGuard.style.backgroundColor = rColor ;
+        if (lastTop <= screenHeight/2) {
+          setTimeout(burnGuardAnimateTop,5);
+        } else {
+            burnGuard.style.display = "none" ;
+        }
+    }
+
+    burnGuardAnimateBottom = () => {
+        color = ++color % 3;
+        var rColor = colors[color];
+        lastBottom -= 1 ;
+
+        var burnGuard = document.getElementById("burnGuardBottom") ;
+        burnGuard.style.top = `${lastBottom}px` ;
+        burnGuard.style.backgroundColor = rColor ;
+        if (lastBottom >= screenHeight/2) {
+          setTimeout(burnGuardAnimateBottom,5);
+        } else {
+            burnGuard.style.display = "none" ;
+        }
+    }
+
+
+    setupBurnGuard = () => {
+
+        screenHeight = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+        screenWidth = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
+
+        lastLeft = 0 ;
+        lastRight = screenWidth ;
+
+        lastTop = 0 ;
+        lastBottom = screenHeight ;
+
+        color = ++color % 3;
+
+        var burnGuardRight = document.getElementById("burnGuardRight") ;
+        var burnGuardLeft = document.getElementById("burnGuardLeft") ;
+
+        var burnGuardTop = document.getElementById("burnGuardTop") ;
+        var burnGuardBottom = document.getElementById("burnGuardBottom") ;
+
+        burnGuardRight.style.backgroundColor = colors[color] ;
+        burnGuardLeft.style.backgroundColor = colors[color] ;
+        burnGuardTop.style.backgroundColor = colors[color] ;
+        burnGuardBottom.style.backgroundColor = colors[color] ;
+
+        burnGuardRight.style.display = "block" ;
+        burnGuardLeft.style.display = "block" ;
+        burnGuardTop.style.display = "block" ;
+        burnGuardBottom.style.display = "block" ;
+
+        burnGuardRight.style.top = "0px" ;
+        burnGuardRight.style.left = "0px" ;
+        burnGuardLeft.style.top = "0px" ;
+        burnGuardLeft.style.left = "0px" ;
+
+        burnGuardTop.style.top = "0px" ;
+        burnGuardTop.style.left = "0px" ;
+        burnGuardBottom.style.top = "0px" ;
+        burnGuardBottom.style.left = "0px" ;
+
+        burnGuardRight.style.width = "1px" ;
+        burnGuardRight.style.height = `${screenHeight}px` ;
+        burnGuardLeft.style.width = "1px" ;
+        burnGuardLeft.style.height = `${screenHeight}px` ;
+
+        burnGuardTop.style.width = `${screenWidth}px` ;
+        burnGuardTop.style.height = "1px" ;
+        burnGuardBottom.style.width = `${screenWidth}px` ;
+        burnGuardBottom.style.height = "1px" ;
+
+    }
+
+    scheduleBurnGuard = () => {
+        console.log("Starting BurnGuard") ;
+
+        setupBurnGuard() ;
+
+        setTimeout(burnGuardAnimateLeft,5);
+        setTimeout(burnGuardAnimateRight,5);
+        setTimeout(burnGuardAnimateTop,5);
+        setTimeout(burnGuardAnimateBottom,5);
+
+        setTimeout(scheduleBurnGuard,SCHEDULE_TIMEOUT);
+
+        //Trazer planos para frente
+        //showPlans();
+
+    }
+
+    scheduleBurnGuard();
+
+    //Trazer planos para frente
+    //showPlans();
+    //setTimeout(showPlans,SCHEDULE_TIMEOUT);
+
+
+</script>
+</html>
